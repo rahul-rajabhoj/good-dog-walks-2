@@ -18,9 +18,10 @@
             </header>
             <div class="card-section">
                <h2>Toy Inventory</h2>
-               <p>These are the assets we have to work with.</p>
+               <p data-bind="visible: inventory().length > 0">These are the assets we have to work with.</p>
+               <p data-bind="visible: inventory().length == 0">You don't have any toys yet!</p>
                
-               <button>+ Add Toy</button>
+               <button data-bind="click: addItem, enable: inventory().length < 4">+ Add Toy</button>
                <ul class="counter-ui-container" data-bind="foreach: inventory">
                    <li>
                        <span>
@@ -28,7 +29,7 @@
                            <span data-bind="text: $data.text"></span>
                        </span>
                        <span>
-                            <button>&times;</button>
+                            <button data-bind="click: $parent.removeItem, attr: { 'item-index': $index }">&times;</button>
                        </span>
                    </li>
                </ul>

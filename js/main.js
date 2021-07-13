@@ -10,10 +10,19 @@ function InventoryViewModel() {
     ];
      
     self.inventory = ko.observableArray([
-        iconTypes[1],
-        iconTypes[2],
-        iconTypes[3],
     ]);
+
+    self.addItem = function() {
+        var index = Math.floor(Math.random() * iconTypes.length);
+
+        self.inventory.push(iconTypes[index]);
+    }
+
+    self.removeItem = function(data, event) {
+        var indexToRemove = event.target.getAttribute('item-index');
+
+        self.inventory.splice(indexToRemove, 1);
+    }
 }
 
 ko.applyBindings(new InventoryViewModel(), document.querySelector("#knockout-app"));
