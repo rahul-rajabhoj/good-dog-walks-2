@@ -21,7 +21,16 @@
                <p>These are the assets we have to work with.</p>
                
                <button>+ Add Toy</button>
-               <ul class="counter-ui-container">
+               <ul class="counter-ui-container" data-bind="foreach: inventory">
+                   <li>
+                       <span>
+                           <span data-bind="class: $data.icon"></span>
+                           <span data-bind="text: $data.text"></span>
+                       </span>
+                       <span>
+                            <button>&times;</button>
+                       </span>
+                   </li>
                </ul>
             </div>
             <footer>
